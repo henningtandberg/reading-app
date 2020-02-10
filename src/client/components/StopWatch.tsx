@@ -8,7 +8,6 @@ interface IStopwatchState {
     timerOn: boolean;
     timerStart: number;
     timerTime: number;
-    totalPages: number;
 }
 
 class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
@@ -24,15 +23,13 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
             timerOn: false,
             timerStart: 0,
             timerTime: 0,
-            totalPages: 0,
         };
     }
 
     public render() {
-        const timerTime = this.state.timerTime;
-        const seconds = ("0" + (Math.floor(timerTime / 1000) % 60)).slice(-2);
-        const minutes = ("0" + (Math.floor(timerTime / 60000) % 60)).slice(-2);
-        const hours = ("0" + Math.floor(timerTime / 3600000)).slice(-2);
+        const seconds = ("0" + (Math.floor(this.state.timerTime / 1000) % 60)).slice(-2);
+        const minutes = ("0" + (Math.floor(this.state.timerTime / 60000) % 60)).slice(-2);
+        const hours = ("0" + Math.floor(this.state.timerTime / 3600000)).slice(-2);
 
         return (
             <div>
@@ -42,17 +39,29 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
                 <button onClick={this.startTimer}>Start</button>
                 <button onClick={this.stopTimer}>Stop</button>
                 <button onClick={this.resetTimer}>Reset</button>
-                <div>
-                    <form>
-                        <label>
-                            Antall sider:
-                            <input type="text" name="sider" />
-                        </label>
-                        <input type="submit" value="submit" />
-                    </form>
-                </div>
+                {this.state.timerTime > 0 && !this.state.timerOn &&
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            <label>
+                                Antall sider:
+                                <input type="text" name="pages" />
+                            </label>
+                            <input type="submit" value="submit" />
+                        </form>
+                    </div>
+                }
             </div>
         );
+    }
+
+    private async handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
+        event.preventDefault();
+
+        alert((event.target as HTMLTextAreaElement).value);
+        //fetch("/api/add", {
+        //    body: (event.target as HTMLTextAreaElement).value,
+        //    method: "POST",
+        //});
     }
 
     private startTimer = () => {
