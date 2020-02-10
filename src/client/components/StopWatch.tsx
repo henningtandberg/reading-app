@@ -8,6 +8,7 @@ interface IStopwatchState {
     timerOn: boolean;
     timerStart: number;
     timerTime: number;
+    totalPages: number;
 }
 
 class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
@@ -23,6 +24,7 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
             timerOn: false,
             timerStart: 0,
             timerTime: 0,
+            totalPages: 0,
         };
     }
 
@@ -40,6 +42,15 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
                 <button onClick={this.startTimer}>Start</button>
                 <button onClick={this.stopTimer}>Stop</button>
                 <button onClick={this.resetTimer}>Reset</button>
+                <div>
+                    <form>
+                        <label>
+                            Antall sider:
+                            <input type="text" name="sider" />
+                        </label>
+                        <input type="submit" value="submit" />
+                    </form>
+                </div>
             </div>
         );
     }

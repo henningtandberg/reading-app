@@ -15,7 +15,6 @@ const App = () => {
   return (
     <Router>
       <div>
-
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/overview" component={OverviewPage} />
