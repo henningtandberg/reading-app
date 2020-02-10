@@ -15,25 +15,6 @@ const App = () => {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/overview">Overview</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/reading">Read</Link>
-            </li>
-            <li>
-              <Link to="/task">Tasks</Link>
-            </li>
-          </ul>
-        </nav>
 
         <Switch>
           <Route exact path="/" component={HomePage} />
