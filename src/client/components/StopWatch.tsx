@@ -5,6 +5,7 @@ interface IStopwatchProps {
 }
 
 interface IStopwatchState {
+    pages: number;
     timerOn: boolean;
     timerStart: number;
     timerTime: number;
@@ -20,10 +21,14 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
         clearInterval(this.timer);
 
         this.state = {
+            pages: 0,
             timerOn: false,
             timerStart: 0,
             timerTime: 0,
         };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     public render() {
@@ -44,7 +49,7 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
                         <form onSubmit={this.handleSubmit}>
                             <label>
                                 Antall sider:
-                                <input type="text" name="pages" />
+                                <input type="text" name="pages" onChange={this.onChange}/>
                             </label>
                             <input type="submit" value="submit" />
                         </form>
@@ -54,14 +59,49 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
         );
     }
 
+    private validateForm(): boolean {
+        return true;
+    }
+
+    private async submitForm(): Promise<void> {
+        await fetch("/api/read", {
+            body: JSON.stringify({
+                pages: this.state.pages,
+                time: this.state.timerTime,
+            }),
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            mode: "cors",
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+        });
+    }
+
+    private async onChange(event: React.ChangeEvent<HTMLInputElement>): Promise<void> {
+        event.preventDefault();
+
+        // BAD
+        // tslint:disable-next-line: radix
+        const value = parseInt(event.target.value);
+
+        return new Promise((resolve) => {
+            this.setState({pages: value});
+        });
+    }
+
     private async handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
         event.preventDefault();
 
-        alert((event.target as HTMLTextAreaElement).value);
-        //fetch("/api/add", {
-        //    body: (event.target as HTMLTextAreaElement).value,
-        //    method: "POST",
-        //});
+        if (this.validateForm()) {
+            await this.submitForm();
+        }
+
+        // BAD
+        window.location.reload();
     }
 
     private startTimer = () => {

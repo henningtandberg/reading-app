@@ -23,7 +23,7 @@ app.post("/api/read", async (request, response) => {
     const result = await readModel.save();
     response.send(result);
   } catch (error) {
-    response.status(500).send({message: "POST FAILED"});
+    response.status(500).send(error);
   }
 });
 
@@ -32,7 +32,7 @@ app.get("/api/overview", async (request, response) => {
     const result = await ReadModel.find().exec();
     response.send(result);
   } catch (error) {
-    response.status(500).send({message: "GET FAILED"});
+    response.status(500).send(error);
   }
 });
 
