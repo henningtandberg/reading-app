@@ -67,7 +67,7 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
         await fetch("/api/read", {
             body: JSON.stringify({
                 pages: this.state.pages,
-                time: this.state.timerTime,
+                time: this.state.timerTime / 1000, // Seconds
             }),
             cache: "no-cache",
             credentials: "same-origin",
