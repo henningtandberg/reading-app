@@ -1,26 +1,36 @@
 import BodyParser from "body-parser";
 import express from "express";
+import Mongoose from "mongoose";
 import Bundler from "parcel-bundler";
 import path from "path";
 
+Mongoose.connect("mongodb://localhost/reading-app");
+
 const app = express();
 const port = 8080 || process.env.PORT;
+const ReadModel = Mongoose.model("read", {
+    pages: Number,
+    time: Number,
+});
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended: true}));
 
 app.post("/api/read", async (request, response) => {
   try {
-    console.log(request);
-    response.status(200).send({message: "POST SUCCESS"});
+    console.log(request.body);
+    const readModel = ReadModel(request.body);
+    const result = await readModel.save();
+    response.send(result);
   } catch (error) {
     response.status(500).send({message: "POST FAILED"});
   }
 });
 
-app.get("/api/read", async (request, response) => {
+app.get("/api/overview", async (request, response) => {
   try {
-    response.status(200).send({message: "GET SUCCESS"});
+    const result = await ReadModel.find().exec();
+    response.send(result);
   } catch (error) {
     response.status(500).send({message: "GET FAILED"});
   }
