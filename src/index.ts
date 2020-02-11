@@ -28,9 +28,42 @@ app.post("/api/read", async (request, response) => {
 });
 
 app.get("/api/overview", async (request, response) => {
+  const body = {
+    pagesPerHour: 0,
+    pagesPerWeek: 0,
+    pagesTotal: 0,
+  };
+
   try {
     const result = await ReadModel.find().exec();
-    response.send(result);
+
+    const totalTime = result.reduce((acc: number, res: any) => acc + res.time, 0);
+    const totalTimeHours = totalTime / 3600;
+    const totalTimeDays = totalTimeHours / 24;
+    const totalTimeWeeks = totalTimeDays / 7;
+
+    const totalPages = result.reduce((acc: number, res: any) => acc + res.pages, 0);
+    const pagesPerHour = totalPages / totalTimeHours;
+    const pagesPerDay = pagesPerHour / 24;
+    const pagesPerWeek = pagesPerDay / 7;
+
+    console.log({
+      totalTime,
+      totalTimeHours,
+      totalTimeDays,
+      totalTimeWeeks,
+      totalPages,
+      pagesPerHour,
+      pagesPerDay,
+      pagesPerWeek,
+    });
+
+    response.send({
+      totalPages,
+      pagesPerHour,
+      pagesPerDay,
+      pagesPerWeek,
+    });
   } catch (error) {
     response.status(500).send(error);
   }
