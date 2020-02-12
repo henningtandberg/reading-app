@@ -12,6 +12,11 @@ const ReadModel = Mongoose.model("read", {
     pages: Number,
     time: Number,
 });
+const TaskModel = Mongoose.model("task", {
+    task: String,
+    pages: Number,
+    complete: Boolean,
+});
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended: true}));
@@ -30,21 +35,22 @@ app.post("/api/read/session", async (request, response) => {
 app.post("/api/read/task", async (request, response) => {
   try {
     console.log(request.body);
-    response.status(200).send(request.body);
+    const taskModel = TaskModel(request.body);
+    const result = await taskModel.save();
+    response.send(result);
   } catch (error) {
     response.status(500).send(error);
   }
-
 });
 
-app.post("/api/read/tasks", async (request, response) => {
+app.get("/api/read/tasks", async (request, response) => {
   try {
     console.log(request.body);
-    response.status(200).send(request.body);
+    const result = await TaskModel.find().exec();
+    response.send(result);
   } catch (error) {
     response.status(500).send(error);
   }
-
 });
 
 app.get("/api/overview", async (request, response) => {
