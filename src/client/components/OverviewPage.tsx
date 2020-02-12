@@ -44,16 +44,18 @@ class OverviewPage extends Component<IOverviewProps, IOverviewState> {
 
     public render() {
         return (
-            <div className="overview">
-                <div className="home-button">
+            <div className="overview row h-100">
+                <div className="home-button col-md-12">
                     <Link to="/">BACK</Link>
                 </div>
-                <h1>Oversikt</h1>
-                <div>
-                    <h2>Sider lest per time: {this.state.pagesPerHour}</h2>
-                    <h2>Sider lest per dag: {this.state.pagesPerDay}</h2>
-                    <h2>Sider lest per uke: {this.state.pagesPerWeek}</h2>
-                    <h2>Sider lest totalt: {this.state.pagesTotal}</h2>
+                <div className="overview-title col-md-12">
+                    <h1>Oversikt</h1>
+                </div>
+                <div className="overview-text col-md-12">
+                    <p>Sider lest per time: {this.state.pagesPerHour}</p>
+                    <p>Sider lest per dag: {this.state.pagesPerDay}</p>
+                    <p>Sider lest per uke: {this.state.pagesPerWeek}</p>
+                    <p>Sider lest totalt: {this.state.pagesTotal}</p>
                 </div>
             </div>
         );

@@ -37,21 +37,23 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
         const hours = ("0" + Math.floor(this.state.timerTime / 3600000)).slice(-2);
 
         return (
-            <div>
-                <div>
+            <div className="row h-100">
+                <div className="col-md-12">
                     {hours} : {minutes} : {seconds}
                 </div>
-                <button onClick={this.startTimer}>Start</button>
-                <button onClick={this.stopTimer}>Stop</button>
-                <button onClick={this.resetTimer}>Reset</button>
+                <div className="col-md-12">
+                    <button className="btn btn-primary" onClick={this.startTimer}>Start</button>
+                    <button className="btn btn-primary" onClick={this.stopTimer}>Stop</button>
+                    <button className="btn btn-primary" onClick={this.resetTimer}>Reset</button>
+                </div>
                 {this.state.timerTime > 0 && !this.state.timerOn &&
-                    <div>
+                    <div className="col-md-12">
                         <form onSubmit={this.handleSubmit}>
-                            <label>
-                                Antall sider:
-                                <input type="text" name="pages" onChange={this.onChange}/>
-                            </label>
-                            <input type="submit" value="submit" />
+                            <div className="form-group">
+                                <label className="form-check-label">Antall sider:</label>
+                                <input type="text" className="form-control" name="pages" onChange={this.onChange}/>
+                                <button type="submit" className="btn btn-primary">Ferdig</button>
+                            </div>
                         </form>
                     </div>
                 }
@@ -64,7 +66,7 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
     }
 
     private async submitForm(): Promise<void> {
-        await fetch("/api/read", {
+        await fetch("/api/read/session", {
             body: JSON.stringify({
                 pages: this.state.pages,
                 time: this.state.timerTime / 1000, // Seconds

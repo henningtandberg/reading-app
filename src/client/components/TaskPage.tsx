@@ -17,6 +17,9 @@ class TaskPage extends Component<ITaskPageProps, ITaskPageState> {
                     <Link to="/">BACK</Link>
                 </div>
                 <h1>Task</h1>
+                <div className="task-list-wrapper">
+                    <h1>heo</h1>
+                </div>
             </div>
         );
     }

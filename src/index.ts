@@ -1,5 +1,5 @@
 import BodyParser from "body-parser";
-import express from "express";
+import express, { response } from "express";
 import Mongoose from "mongoose";
 import Bundler from "parcel-bundler";
 import path from "path";
@@ -16,7 +16,7 @@ const ReadModel = Mongoose.model("read", {
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended: true}));
 
-app.post("/api/read", async (request, response) => {
+app.post("/api/read/session", async (request, response) => {
   try {
     console.log(request.body);
     const readModel = ReadModel(request.body);
@@ -25,6 +25,26 @@ app.post("/api/read", async (request, response) => {
   } catch (error) {
     response.status(500).send(error);
   }
+});
+
+app.post("/api/read/task", async (request, response) => {
+  try {
+    console.log(request.body);
+    response.status(200).send(request.body);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+
+});
+
+app.post("/api/read/tasks", async (request, response) => {
+  try {
+    console.log(request.body);
+    response.status(200).send(request.body);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+
 });
 
 app.get("/api/overview", async (request, response) => {
@@ -36,12 +56,8 @@ app.get("/api/overview", async (request, response) => {
 
   try {
     const result = await ReadModel.find().exec();
-
     const totalTime = result.reduce((acc: number, res: any) => acc + res.time, 0);
     const totalTimeHours = totalTime / 3600;
-    const totalTimeDays = totalTimeHours / 24;
-    const totalTimeWeeks = totalTimeDays / 7;
-
     const totalPages = result.reduce((acc: number, res: any) => acc + res.pages, 0);
     const pagesPerHour = totalPages / totalTimeHours;
     const pagesPerDay = pagesPerHour / 24;
@@ -50,8 +66,6 @@ app.get("/api/overview", async (request, response) => {
     console.log({
       totalTime,
       totalTimeHours,
-      totalTimeDays,
-      totalTimeWeeks,
       totalPages,
       pagesPerHour,
       pagesPerDay,

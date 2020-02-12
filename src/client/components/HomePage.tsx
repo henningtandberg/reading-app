@@ -12,15 +12,17 @@ interface IHomePageState {
 class HomePage extends Component<IHomePageProps, IHomePageState> {
     public render() {
         return (
-            <div className="home">
-                <h1>Home</h1>
-                <div className="reading-button">
+            <div className="home row h-100">
+                <div className="home-title col-md-12">
+                    <h1>Home</h1>
+                </div>
+                <div className="reading-button col-md-12">
                     <Link to="/reading">Lese</Link>
                 </div>
-                <div className="overview-button">
+                <div className="overview-button col-md-12">
                     <Link to="/overview">Oversikt</Link>
                 </div>
-                <div className="profile-button">
+                <div className="profile-button col-md-12">
                     <Link to="/profile">Profil</Link>
                 </div>
             </div>

@@ -13,15 +13,17 @@ interface IReadingPageState {
 class ReadingPage extends Component<IReadingPageProps, IReadingPageState> {
     public render() {
         return (
-            <div className="reading">
-                <div className="home-button">
+            <div className="reading row h-100">
+                <div className="home-button col-md-12">
                     <Link to="/">BACK</Link>
                 </div>
-                <h1>Reading</h1>
-                <div className="stopwatch-wrapper">
+                <div className="reading-title col-md-12">
+                    <h1>Reading</h1>
+                </div>
+                <div className="stopwatch-wrapper col-md-12">
                     <StopWatch />
                 </div>
-                <div className="task-button">
+                <div className="task-button col-md-12">
                     <Link to="/task">Leseoppgaver</Link>
                 </div>
             </div>
