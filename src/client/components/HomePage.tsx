@@ -22,9 +22,6 @@ class HomePage extends Component<IHomePageProps, IHomePageState> {
                 <div className="overview-button col-md-12">
                     <Link to="/overview">Oversikt</Link>
                 </div>
-                <div className="profile-button col-md-12">
-                    <Link to="/profile">Profil</Link>
-                </div>
             </div>
         );
     }
