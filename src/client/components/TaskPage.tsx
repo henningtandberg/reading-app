@@ -50,10 +50,12 @@ class TaskPage extends Component<ITaskPageProps, ITaskPageState> {
 
     public render() {
         return (
-            <div className="task">
+            <div className="task row">
                 <HomeButton />
-                <h1>Leseoppgaver</h1>
-                <div className="task-list-wrapper">
+                <div className="task-title col-xl-12">
+                    <h1>Leseoppgaver</h1>
+                </div>
+                <div className="task-list-wrapper col-xl-12">
                     <TaskList
                         taskList={this.state.taskList}
                         handleTaskComplete={this.handleTaskComplete}

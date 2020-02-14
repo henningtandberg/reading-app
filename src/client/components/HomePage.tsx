@@ -11,6 +11,7 @@ interface IHomePageState {
 
 class HomePage extends Component<IHomePageProps, IHomePageState> {
     public render() {
+        console.log(process.env.PUBLIC_URL);
         return (
             <div className="home row h-100">
                 <div className="home-title col-xl-12">

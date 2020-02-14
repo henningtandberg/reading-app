@@ -97,8 +97,8 @@ app.get("/api/overview", async (request, response) => {
     const result = await ReadModel.find().exec();
     const totalTime = result.reduce((acc: number, res: any) => acc + res.time, 0);
     const totalTimeHours = totalTime / 3600;
-    const totalPages = result.reduce((acc: number, res: any) => acc + res.pages, 0);
-    const pagesPerHour = totalPages / totalTimeHours;
+    const pagesTotal = result.reduce((acc: number, res: any) => acc + res.pages, 0);
+    const pagesPerHour = pagesTotal / totalTimeHours;
     const pagesPerDay = pagesPerHour / 24;
     const pagesPerWeek = pagesPerDay / 7;
 
@@ -108,7 +108,7 @@ app.get("/api/overview", async (request, response) => {
       result: {
         totalTime,
         totalTimeHours,
-        totalPages,
+        pagesTotal,
         pagesPerHour,
         pagesPerDay,
         pagesPerWeek,
@@ -116,7 +116,7 @@ app.get("/api/overview", async (request, response) => {
     });
 
     response.send({
-      totalPages,
+      pagesTotal,
       pagesPerHour,
       pagesPerDay,
       pagesPerWeek,
@@ -126,7 +126,8 @@ app.get("/api/overview", async (request, response) => {
   }
 });
 
-const bundler = new Bundler(path.join(__dirname, "../src/client/index.html"));
+// const bundler = new Bundler(path.join(__dirname, "../src/client/index.html"));
+const bundler = new Bundler(path.join(__dirname, "../src/client/public/*"));
 app.use(bundler.middleware());
 
 app.listen(port, () => {

@@ -23,15 +23,14 @@ class TaskItem extends Component<ITaskItemProps, ITaskItemState> {
 
     public render() {
         return(
-            <li className="list-group-item task-item">
-                <div className="task-item-complete"
-                onClick={() => this.props.handleTaskComplete(this.props.taskItem.id)}>X</div>
-                <div className="task-item-task">{this.props.taskItem.task}</div>
-                <div className="task-item-pages">{this.props.taskItem.pages}</div>
-                {this.props.taskItem.complete ?
-                <div className="task-item-complete">C</div> :
-                <div className="task-item-not-complete">n</div>
-                }
+            <li className="list-group-item">
+                <div className="task-item"
+                onClick={() => this.props.handleTaskComplete(this.props.taskItem.id)}>
+                    <div className="task-item-task">{this.props.taskItem.task}</div>
+                    {this.props.taskItem.complete ?
+                    <div className="task-item-complete fa fa-check-square" /> :
+                    <div className="task-item-complete fa fa-square" />}
+                </div>
             </li>
         );
     }
