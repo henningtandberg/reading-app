@@ -3,6 +3,7 @@ import express, { response } from "express";
 import Mongoose from "mongoose";
 import Bundler from "parcel-bundler";
 import path from "path";
+import shortid from "shortid";
 
 Mongoose.connect("mongodb://localhost/reading-app");
 
@@ -13,6 +14,7 @@ const ReadModel = Mongoose.model("read", {
     time: Number,
 });
 const TaskModel = Mongoose.model("task", {
+    id: String,
     task: String,
     pages: Number,
     complete: Boolean,
@@ -23,9 +25,13 @@ app.use(BodyParser.urlencoded({extended: true}));
 
 app.post("/api/read/session", async (request, response) => {
   try {
-    console.log(request.body);
     const readModel = ReadModel(request.body);
     const result = await readModel.save();
+    console.log({
+      api: "/api/read/session",
+      method: "POST",
+      result,
+    });
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
@@ -34,10 +40,33 @@ app.post("/api/read/session", async (request, response) => {
 
 app.post("/api/read/task", async (request, response) => {
   try {
-    console.log(request.body);
-    const taskModel = TaskModel(request.body);
+    const taskModel = TaskModel({
+      id: shortid.generate(),
+      ...request.body,
+    });
     const result = await taskModel.save();
+    console.log({
+      api: "/api/read/task",
+      method: "POST",
+      result,
+    });
     response.send(result);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
+app.put("/api/read/task/:id", async (request, response) => {
+  try {
+    const taskModel = await TaskModel.findOne({id: request.params.id});
+    taskModel.complete = !taskModel.complete;
+    const result = await taskModel.save();
+    console.log({
+      api: "/api/read/task/:id",
+      method: "PUT",
+      result,
+    });
+    response.status(200).send(taskModel);
   } catch (error) {
     response.status(500).send(error);
   }
@@ -45,8 +74,12 @@ app.post("/api/read/task", async (request, response) => {
 
 app.get("/api/read/tasks", async (request, response) => {
   try {
-    console.log(request.body);
     const result = await TaskModel.find().exec();
+    console.log({
+      api: "/api/read/tasks",
+      method: "GET",
+      result,
+    });
     response.send(result);
   } catch (error) {
     response.status(500).send(error);
@@ -70,12 +103,16 @@ app.get("/api/overview", async (request, response) => {
     const pagesPerWeek = pagesPerDay / 7;
 
     console.log({
-      totalTime,
-      totalTimeHours,
-      totalPages,
-      pagesPerHour,
-      pagesPerDay,
-      pagesPerWeek,
+      api: "/api/overview",
+      method: "GET",
+      result: {
+        totalTime,
+        totalTimeHours,
+        totalPages,
+        pagesPerHour,
+        pagesPerDay,
+        pagesPerWeek,
+      }
     });
 
     response.send({

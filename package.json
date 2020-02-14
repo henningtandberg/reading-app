@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/henningtandberg/reading-app#readme",
   "dependencies": {
+    "@types/shortid": "0.0.29",
     "bootstrap": "^4.4.1",
     "components": "^0.1.0",
     "express": "^4.16.4",

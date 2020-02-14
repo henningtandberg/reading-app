@@ -18,11 +18,33 @@ class TaskPage extends Component<ITaskPageProps, ITaskPageState> {
         this.state = {
             taskList: [],
         };
+
+        this.handleTaskComplete = this.handleTaskComplete.bind(this);
     }
+
     public componentDidMount() {
-        fetch('/api/read/tasks')
-        .then(response => response.json())
-        .then(data => this.setState({taskList: data}));
+        fetch("/api/read/tasks")
+        .then((response) => response.json())
+        .then((data) => this.setState({taskList: data}));
+    }
+
+    public handleTaskComplete(id: string) {
+        const currentTaskList: ITaskItem[] = this.state.taskList;
+        const completedTask = currentTaskList.find((taskItem) => taskItem.id === id);
+        const newTaskList: ITaskItem[] = currentTaskList.map((taskItem) =>
+            taskItem.id === id ? { ...taskItem, complete: true } : taskItem);
+
+        fetch("/api/read/task/" + completedTask.id, {
+            method: "PUT",
+        })
+        .then(() => {
+            this.setState({
+                taskList: newTaskList,
+            });
+        })
+        .then(() => {
+            window.location.reload();
+        });
     }
 
     public render() {
@@ -33,7 +55,10 @@ class TaskPage extends Component<ITaskPageProps, ITaskPageState> {
                 </div>
                 <h1>Task</h1>
                 <div className="task-list-wrapper">
-                    <TaskList taskList={this.state.taskList} />
+                    <TaskList
+                        taskList={this.state.taskList}
+                        handleTaskComplete={this.handleTaskComplete}
+                    />
                 </div>
             </div>
         );
