@@ -170,6 +170,10 @@ a:visited {
 	margin-left: 5%;
 }
 
+.home-button a {
+	color: black;
+}
+
 button.stopwatch-button-start {
 	color: #fff;
 	background-color: green;

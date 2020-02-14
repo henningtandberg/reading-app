@@ -1,8 +1,8 @@
 import React from "react";
-import PagesHourPNG from "../png/hour.png";
-import PagesDayPNG from "../png/book.png";
-import PagesWeekPNG from "../png/week.png";
-import PagesTotalPNG from "../png/page.png";
+import PagesHourPNG from "/png/hour.png";
+import PagesDayPNG from "/png/book.png";
+import PagesWeekPNG from "/png/week.png";
+import PagesTotalPNG from "/png/page.png";
 
 interface IconProps {
 	text: string;
