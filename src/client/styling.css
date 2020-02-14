@@ -1,0 +1,187 @@
+a {
+  color: black;
+}
+
+
+.home {
+	text-align: center;
+
+}
+
+.home h1 {
+	font-size: 40px;
+	font-weight: 600;
+	font-family: "Playfair Display", sans-serif;
+	margin-top: 10%;
+	margin-bottom: 2px;
+}
+
+.reading h1 {
+	font-size: 40px;
+	font-family: "Playfair Display", sans-serif;
+	font-weight: 500;
+	margin-bottom: 5%;
+}
+
+.task h1 {
+	font-size: 40px;
+	font-family: "Playfair Display", sans-serif;
+	font-weight: 500;
+	margin-bottom: 5%;
+}
+
+.overview h1 {
+	font-size: 40px;
+	font-family: "Playfair Display", sans-serif;
+	font-weight: 600;
+	margin-bottom: 5%;
+
+}
+
+.overview-text-hour {
+	font-size: 18px;
+	font-weight: 500;
+	background-color: #F36B4C;
+	margin-left: 15%;
+	margin-right: 15%;
+	margin-bottom: 2%;
+	padding-top: 2%;
+	border-radius: 10px;
+}
+
+.overview-text-day {
+	font-size: 18px;
+	font-weight: 500;
+	background-color: #F36B4C;
+	margin-left: 15%;
+	margin-right: 15%;
+	margin-bottom: 2%;
+	padding-top: 2%;
+	border-radius: 10px;
+}
+
+.overview-text-week {
+	font-size: 18px;
+	font-weight: 500;
+	background-color: #F36B4C;
+	margin-left: 15%;
+	margin-right: 15%;
+	margin-bottom: 2%;
+	padding-top: 2%;
+	border-radius: 10px;
+}
+
+.overview-text-total {
+	font-size: 18px;
+	font-weight: 500;
+	background-color: #F36B4C;
+	margin-left: 15%;
+	margin-right: 15%;
+	margin-bottom: 2%;
+	padding-top: 2%;
+	border-radius: 10px;
+}
+
+.reading-button {
+	background-color: #357FBC;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 5%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 25px;
+	font-family: arial;
+	border-radius: 10px;
+
+}
+
+.overview-button {
+	background-color: #F54F29;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-bottom: 10%;
+	margin-top: 3%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 25px;
+	font-family: arial;
+	border-radius: 10px;
+}
+
+.task-button {
+	background-color: #79D0F2;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 5%;
+	padding-top: 20px;
+	margin-bottom: 10%;
+	padding-bottom: 20px;
+	font-size: 25px;
+	font-family: arial;
+	border-radius: 10px;
+
+}
+
+.stopwatch-time {
+	font-size: 50px;
+}
+
+.stopwatch-time-text{
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	margin-top: 5%;
+	font-size: 16px;
+	font-family: "Playfair Display";
+}
+
+.home-button {
+	font-size: 40px;
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+button.stopwatch-button-start {
+	color: #fff;
+	background-color: green;
+	border: 0px;
+	margin-right: 3%;
+	font-size: 30px;
+}
+
+button.stopwatch-button-stop {
+	color: #fff;
+	background-color: red;
+	border: 0px;
+	margin-right: 3%;
+	font-size: 30px;
+}
+
+button.stopwatch-button-reset {
+	color: #fff;
+	background-color: black;
+	border: 0px;
+	font-size: 30px;
+}
+
+button.stopwatch-form-submit {
+	background-color: black;
+	color: white;
+	border: 0px;
+	margin-top: 5%;
+
+}
+
+label.stopwatch-form-label {
+	font-size: 20px;
+	font-weight: 500;
+
+}
+
+.stopwatch-form-input {
+	margin-left: 25%;
+	margin-right: 25%;
+	width: 50%;
+}
+
+
