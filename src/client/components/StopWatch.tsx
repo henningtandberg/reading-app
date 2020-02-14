@@ -38,21 +38,30 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
 
         return (
             <div className="row h-100">
-                <div className="col-md-12">
-                    {hours} : {minutes} : {seconds}
+                <div className="stopwatch-time col-md-12">
+                    <p>{hours} : {minutes} : {seconds}</p>
                 </div>
-                <div className="col-md-12">
-                    <button className="btn btn-primary" onClick={this.startTimer}>Start</button>
-                    <button className="btn btn-primary" onClick={this.stopTimer}>Stop</button>
-                    <button className="btn btn-primary" onClick={this.resetTimer}>Reset</button>
+                <div className="stopwatch-button-wrapper col-md-12">
+                    <button className="stopwatch-button-start btn btn-primary fa fa-play" onClick={this.startTimer} />
+                    <button className="stopwatch-button-stop btn btn-primary fa fa-stop" onClick={this.stopTimer} />
+                    <button className="stopwatch-button-reset btn btn-primary fa fa-refresh" onClick={this.resetTimer} />
                 </div>
+                <div className="stopwatch-time-text col-xl-12">
+                    <p> Start tiden når du begynner å lese, stopp når du er ferdig. Reset stiller tiden til null. Når du trykker på stopp, vil du bli spurt om antall sider lest.</p>
+                    </div>
                 {this.state.timerTime > 0 && !this.state.timerOn &&
-                    <div className="col-md-12">
+                    <div className="col-xl-12">
                         <form onSubmit={this.handleSubmit}>
-                            <div className="form-group">
-                                <label className="form-check-label">Antall sider:</label>
-                                <input type="text" className="form-control" name="pages" onChange={this.onChange}/>
-                                <button type="submit" className="btn btn-primary">Ferdig</button>
+                            <div className="stopwatch-form-group form-group row">
+                                <div className="col-xl-12">
+                                <label className="stopwatch-form-label form-check-label">Antall sider:</label>
+                                </div>
+                                <div className="col-xl-12">
+                                <input type="text" className="stopwatch-form-input form-control" name="pages" onChange={this.onChange}/>
+                                </div>
+                                <div className="col-xl-12">
+                                <button type="submit" className="stopwatch-form-submit btn btn-primary">Ferdig</button>
+                                </div>
                             </div>
                         </form>
                     </div>

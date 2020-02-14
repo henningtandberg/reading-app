@@ -13,13 +13,13 @@ class HomePage extends Component<IHomePageProps, IHomePageState> {
     public render() {
         return (
             <div className="home row h-100">
-                <div className="home-title col-md-12">
+                <div className="home-title col-xl-12">
                     <h1>Home</h1>
                 </div>
-                <div className="reading-button col-md-12">
+                <div className="reading-button col-xl-12">
                     <Link to="/reading">Lese</Link>
                 </div>
-                <div className="overview-button col-md-12">
+                <div className="overview-button col-xl-12">
                     <Link to="/overview">Oversikt</Link>
                 </div>
             </div>

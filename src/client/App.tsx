@@ -11,6 +11,7 @@ import TaskPage from "./components/TaskPage";
 
 // tslint:disable-next-line: ordered-imports
 import "bootstrap/dist/css/bootstrap.css";
+import "./styling.css";
 
 const App = () => {
   return (
