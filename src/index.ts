@@ -9,24 +9,41 @@ Mongoose.connect("mongodb://localhost/reading-app");
 
 const app = express();
 const port = 8080 || process.env.PORT;
-const ReadModel = Mongoose.model("read", {
-    pages: Number,
-    time: Number,
+
+interface IRead extends Mongoose.Document {
+  pages: number;
+  time: number;
+}
+
+interface ITask extends Mongoose.Document {
+  id: string;
+  task: string;
+  pages: number;
+  complete: boolean;
+}
+
+const ReadSchema = new Mongoose.Schema({
+  pages: {type: Number, required: true},
+  time: {type: Number, required: true},
 });
-const TaskModel = Mongoose.model("task", {
-    id: String,
-    task: String,
-    // tslint:disable-next-line: object-literal-sort-keys
-    pages: Number,
-    complete: Boolean,
+
+const TaskSchema = new Mongoose.Schema({
+  id: {type: String, required: true},
+  task: {type: String, required: true},
+  // tslint:disable-next-line: object-literal-sort-keys
+  pages: Number,
+  complete: {type: Boolean, required: true},
 });
+
+const ReadModel = Mongoose.model<IRead>("read", ReadSchema);
+const TaskModel = Mongoose.model<ITask>("task", TaskSchema);
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended: true}));
 
 app.post("/api/read/session", async (req, res) => {
   try {
-    const readModel = ReadModel(req.body);
+    const readModel = new ReadModel(req.body);
     const result = await readModel.save();
     console.log({
       api: "/api/read/session",
@@ -41,7 +58,7 @@ app.post("/api/read/session", async (req, res) => {
 
 app.post("/api/read/task", async (req, res) => {
   try {
-    const taskModel = TaskModel({
+    const taskModel = new TaskModel({
       id: shortid.generate(),
       ...req.body,
     });
