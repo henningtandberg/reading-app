@@ -1,4 +1,6 @@
 import React from "react";
+import CheckedPNG from "/png/right.png";
+import UncheckedPNG from "/png/dot.png";
 import PagesDayPNG from "/png/book.png";
 import PagesHourPNG from "/png/hour.png";
 import PagesTotalPNG from "/png/page.png";
@@ -19,9 +21,14 @@ const IconWithText = (png: any, props: IconProps) => (
     </div>
 );
 
-const IconWithTextv2 = (png: any, props: IconProps) => (
-    <div className="icon-wrapper">
-        <p><img src={png} alt="PagesDay" />{props.text}</p>
+const IconWithTextRev = (png: any, props: IconProps) => (
+    <div className="icon-wrapper-rev row">
+        <div className="col-sm-10 text-center icon-wrapper-text-rev">
+            <p>{props.text}</p>
+        </div>
+        <div className="col-sm-2 text-left icon-wrapper-png-rev">
+            <img src={png} alt="PagesHour" />
+        </div>
     </div>
 );
 
@@ -29,3 +36,5 @@ export const PagesHour = (props: IconProps) => (IconWithText(PagesHourPNG, props
 export const PagesDay = (props: IconProps) => (IconWithText(PagesDayPNG, props));
 export const PagesWeek = (props: IconProps) => (IconWithText(PagesWeekPNG, props));
 export const PagesTotal = (props: IconProps) => (IconWithText(PagesTotalPNG, props));
+export const Checked = (props: IconProps) => (IconWithTextRev(CheckedPNG, props));
+export const Unchecked = (props: IconProps) => (IconWithTextRev(UncheckedPNG, props));

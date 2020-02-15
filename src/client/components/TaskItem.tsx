@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import * as Icon from "./Icons";
 
 export interface ITaskItem {
     id: string;
@@ -26,10 +27,9 @@ class TaskItem extends Component<ITaskItemProps, ITaskItemState> {
             <li className="list-group-item">
                 <div className="task-item"
                 onClick={() => this.props.handleTaskComplete(this.props.taskItem.id)}>
-                    <div className="task-item-task">{this.props.taskItem.task}</div>
                     {this.props.taskItem.complete ?
-                    <div className="task-item-complete fa fa-check-square" /> :
-                    <div className="task-item-complete fa fa-square" />}
+                    <Icon.Checked text={this.props.taskItem.task} /> :
+                    <Icon.Unchecked text={this.props.taskItem.task} />}
                 </div>
             </li>
         );

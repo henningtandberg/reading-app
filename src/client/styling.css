@@ -199,6 +199,20 @@ label.stopwatch-form-label {
 	padding-top: 2%;
 }
 
+.icon-wrapper-rev img {
+	width: 3em;
+	height: 3em;
+	float: right;
+	filter: invert(100%);
+}
+
+.icon-wrapper-text-rev p {
+	margin-bottom: 0;	
+	padding-left: 20%;
+	padding-top: 2%;
+	word-wrap: break-word;
+}
+
 li.list-group-item {
 	margin-left: 20%;
 	margin-right: 20%;
