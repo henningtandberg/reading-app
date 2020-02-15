@@ -127,7 +127,7 @@ app.get("/api/overview", async (request, response) => {
 });
 
 // const bundler = new Bundler(path.join(__dirname, "../src/client/index.html"));
-const bundler = new Bundler(path.join(__dirname, "../src/client/public/*"));
+const bundler = new Bundler(path.join(__dirname, "../src/client/public/index.html"));
 app.use(bundler.middleware());
 
 app.listen(port, () => {
