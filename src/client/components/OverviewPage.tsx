@@ -51,29 +51,31 @@ class OverviewPage extends Component<IOverviewProps, IOverviewState> {
     }
 
     public render() {
-        const pagesPerHour = this.state.pagesPerHour;
         return (
             <div className="overview row h-100">
                 <HomeButton />
                 <div className="overview-title col-md-12">
                     <h1>Oversikt</h1>
                 </div>
-                     <div className="overview-text-hour col-xl-12">
-                         <Icon.PagesHour
-                            text={"Sider lest per time: " + pagesPerHour}
-                         />
+                     <div className="overview-text-box col-xl-12">
+                        <Icon.PagesHour
+                            text={"Sider lest per time: " + this.state.pagesPerHour}
+                        />
                     </div>
-                    <div className="overview-text-day col-xl-12">
-                         <Icon.PagesDay />
-                         <p>Sider lest per dag: {this.state.pagesPerDay}</p>
+                    <div className="overview-text-box col-xl-12">
+                        <Icon.PagesDay 
+                            text={"Sider lest per dag: " + this.state.pagesPerDay}
+                        />
                     </div>
-                    <div className="overview-text-week col-xl-12">
-                         <Icon.PagesWeek />
-                         <p>Sider lest per uke: {this.state.pagesPerWeek}</p>
+                    <div className="overview-text-box col-xl-12">
+                        <Icon.PagesWeek
+                            text={"Sider lest per uke: " + this.state.pagesPerWeek}
+                        />
                     </div>
-                    <div className="overview-text-total col-xl-12">
-                         <Icon.PagesTotal/>
-                         <p>Sider lest totalt: {this.state.pagesTotal}</p>
+                    <div className="overview-text-box col-xl-12">
+                        <Icon.PagesTotal
+                            text={"Sider lest totalt: " + this.state.pagesTotal}
+                        />
                 </div>
             </div>
         );

@@ -49,47 +49,16 @@ a:visited {
 
 }
 
-.overview-text-hour {
+.overview-text-box {
 	font-size: 18px;
 	font-weight: 500;
 	background-color: #F36B4C;
 	margin-left: 15%;
 	margin-right: 15%;
-	margin-bottom: 2%;
+	margin-bottom: 1%;
+	margin-top: 1%;
 	padding-top: 2%;
-	border-radius: 10px;
-}
-
-.overview-text-day {
-	font-size: 18px;
-	font-weight: 500;
-	background-color: #F36B4C;
-	margin-left: 15%;
-	margin-right: 15%;
-	margin-bottom: 2%;
-	padding-top: 2%;
-	border-radius: 10px;
-}
-
-.overview-text-week {
-	font-size: 18px;
-	font-weight: 500;
-	background-color: #F36B4C;
-	margin-left: 15%;
-	margin-right: 15%;
-	margin-bottom: 2%;
-	padding-top: 2%;
-	border-radius: 10px;
-}
-
-.overview-text-total {
-	font-size: 18px;
-	font-weight: 500;
-	background-color: #F36B4C;
-	margin-left: 15%;
-	margin-right: 15%;
-	margin-bottom: 2%;
-	padding-top: 2%;
+	padding-bottom: 2%;
 	border-radius: 10px;
 }
 
@@ -222,6 +191,12 @@ label.stopwatch-form-label {
 	height: 3em;
 	float: left;
 	filter: invert(100%);
+}
+
+.icon-wrapper-text p {
+	margin-bottom: 0;	
+	padding-right: 20%;
+	padding-top: 2%;
 }
 
 li.list-group-item {
