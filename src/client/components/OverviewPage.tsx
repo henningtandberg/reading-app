@@ -34,10 +34,10 @@ class OverviewPage extends Component<IOverviewProps, IOverviewState> {
 
             return response.json();
         }).then((data) => ({
-            pagesTotal: Math.round(data.pagesTotal),
-            pagesPerHour: Math.round(data.pagesPerHour),
-            pagesPerDay: Math.round(data.pagesPerDay),
-            pagesPerWeek: Math.round(data.pagesPerWeek),
+            pagesTotal: data.pagesTotal,
+            pagesPerHour: data.pagesPerHour,
+            pagesPerDay: data.pagesPerDay,
+            pagesPerWeek: data.pagesPerWeek,
         })).then((data) => {
             this.setState({
                 pagesTotal: data.pagesTotal,

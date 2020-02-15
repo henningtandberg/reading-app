@@ -16,6 +16,7 @@ const ReadModel = Mongoose.model("read", {
 const TaskModel = Mongoose.model("task", {
     id: String,
     task: String,
+    // tslint:disable-next-line: object-literal-sort-keys
     pages: Number,
     complete: Boolean,
 });
@@ -23,26 +24,26 @@ const TaskModel = Mongoose.model("task", {
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended: true}));
 
-app.post("/api/read/session", async (request, response) => {
+app.post("/api/read/session", async (req, res) => {
   try {
-    const readModel = ReadModel(request.body);
+    const readModel = ReadModel(req.body);
     const result = await readModel.save();
     console.log({
       api: "/api/read/session",
       method: "POST",
       result,
     });
-    response.send(result);
+    res.send(result);
   } catch (error) {
-    response.status(500).send(error);
+    res.status(500).send(error);
   }
 });
 
-app.post("/api/read/task", async (request, response) => {
+app.post("/api/read/task", async (req, res) => {
   try {
     const taskModel = TaskModel({
       id: shortid.generate(),
-      ...request.body,
+      ...req.body,
     });
     const result = await taskModel.save();
     console.log({
@@ -50,15 +51,15 @@ app.post("/api/read/task", async (request, response) => {
       method: "POST",
       result,
     });
-    response.send(result);
+    res.send(result);
   } catch (error) {
-    response.status(500).send(error);
+    res.status(500).send(error);
   }
 });
 
-app.put("/api/read/task/:id", async (request, response) => {
+app.put("/api/read/task/:id", async (req, res) => {
   try {
-    const taskModel = await TaskModel.findOne({id: request.params.id});
+    const taskModel = await TaskModel.findOne({id: req.params.id});
     taskModel.complete = !taskModel.complete;
     const result = await taskModel.save();
     console.log({
@@ -66,13 +67,13 @@ app.put("/api/read/task/:id", async (request, response) => {
       method: "PUT",
       result,
     });
-    response.status(200).send(taskModel);
+    res.status(200).send(taskModel);
   } catch (error) {
-    response.status(500).send(error);
+    res.status(500).send(error);
   }
 });
 
-app.get("/api/read/tasks", async (request, response) => {
+app.get("/api/read/tasks", async (req, res) => {
   try {
     const result = await TaskModel.find().exec();
     console.log({
@@ -80,13 +81,13 @@ app.get("/api/read/tasks", async (request, response) => {
       method: "GET",
       result,
     });
-    response.send(result);
+    res.send(result);
   } catch (error) {
-    response.status(500).send(error);
+    res.status(500).send(error);
   }
 });
 
-app.get("/api/overview", async (request, response) => {
+app.get("/api/overview", async (req, res) => {
   const body = {
     pagesPerHour: 0,
     pagesPerWeek: 0,
@@ -95,12 +96,12 @@ app.get("/api/overview", async (request, response) => {
 
   try {
     const result = await ReadModel.find().exec();
-    const totalTime = result.reduce((acc: number, res: any) => acc + res.time, 0);
+    const totalTime = result.reduce((acc: number, elm: any) => acc + elm.time, 0);
     const totalTimeHours = totalTime / 3600;
-    const pagesTotal = result.reduce((acc: number, res: any) => acc + res.pages, 0);
-    const pagesPerHour = pagesTotal / totalTimeHours;
-    const pagesPerDay = pagesPerHour / 24;
-    const pagesPerWeek = pagesPerDay / 7;
+    const pagesTotal = result.reduce((acc: number, elm: any) => acc + elm.pages, 0);
+    const pagesPerHour = Math.round(pagesTotal / totalTimeHours);
+    const pagesPerDay = Math.round(pagesPerHour / 24);
+    const pagesPerWeek = Math.round(pagesPerDay / 7);
 
     console.log({
       api: "/api/overview",
@@ -108,21 +109,23 @@ app.get("/api/overview", async (request, response) => {
       result: {
         totalTime,
         totalTimeHours,
+        // tslint:disable-next-line: object-literal-sort-keys
         pagesTotal,
         pagesPerHour,
         pagesPerDay,
         pagesPerWeek,
-      }
+      },
     });
 
-    response.send({
+    res.send({
       pagesTotal,
+      // tslint:disable-next-line: object-literal-sort-keys
       pagesPerHour,
       pagesPerDay,
       pagesPerWeek,
     });
   } catch (error) {
-    response.status(500).send(error);
+    res.status(500).send(error);
   }
 });
 
