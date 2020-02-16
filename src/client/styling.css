@@ -29,12 +29,16 @@ a:visited {
 
 }
 
-.home h1 {
-	font-size: 40px;
-	font-weight: 600;
-	font-family: "Playfair Display", sans-serif;
+.home-logo {
+	margin-left: 20%;
+	margin-right: 20%;
 	margin-top: 10%;
 	margin-bottom: 2px;
+}
+
+.home-logo img {
+	width: 100%;
+	height: inherit;
 }
 
 .reading h1 {
