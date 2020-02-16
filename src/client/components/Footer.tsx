@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 class Footer extends Component {
     public render() {
         return (
-            <div className="row">
+            <div className="footer row h-100">
                 <div className="footer-text col-xl-12">
                     <p>Problemer eller feil med appen?</p>
                 </div>
