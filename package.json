@@ -26,6 +26,7 @@
     "@types/shortid": "0.0.29",
     "bootstrap": "^4.4.1",
     "components": "^0.1.0",
+    "emailjs-com": "^2.4.1",
     "express": "^4.16.4",
     "jquery": "^3.4.1",
     "mongoose": "^5.8.11",
