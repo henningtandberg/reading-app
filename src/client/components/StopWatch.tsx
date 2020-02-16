@@ -89,6 +89,15 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
             mode: "cors",
             redirect: "follow",
             referrerPolicy: "no-referrer",
+        })
+        .then(() => {
+            this.forceUpdate();
+        })
+        .then(() => {
+            alert("Din lesetid og antall sider har blitt registrert!");
+        })
+        .then(() => {
+            window.location.reload();
         });
     }
 
@@ -112,7 +121,7 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
         }
 
         // BAD
-        window.location.reload();
+        // window.location.reload();
     }
 
     private startTimer = () => {
