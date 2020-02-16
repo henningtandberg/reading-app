@@ -38,7 +38,7 @@ class IssuePage extends Component<IIssuePageProps, IIssuePageState> {
             <div className="issue row h-100">
                 <HomeButton />
                 <div className="issue-title col-xl-12">
-                    <h1>Issue</h1>
+                    <h1>Problemer eller feil</h1>
                 </div>
                 <div className="col-xl-12">
                     <form onSubmit={this.handleSubmit}>
@@ -51,7 +51,7 @@ class IssuePage extends Component<IIssuePageProps, IIssuePageState> {
                                 className="issue-form-input form-control"
                                 name="message"
                                 onChange={this.onChange}
-                                placeholder="Skriv din melding her."
+                                placeholder="Skriv din melding her..."
                                 value={this.state.message}
                                 required
                             />
