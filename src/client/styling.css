@@ -243,6 +243,7 @@ label.stopwatch-form-label {
 	margin-bottom: 0;	
 	padding-right: 20%;
 	padding-top: 2%;
+	font-size: 19px;
 }
 
 .icon-wrapper-rev img {
@@ -264,6 +265,7 @@ li.list-group-item {
 	margin-right: 20%;
 	margin-top: 2em;
 	padding: 0 0 0 0;
+	border: 0;
 	background-color: #79D0F2;
 }
 
@@ -275,7 +277,10 @@ li.list-group-item {
 	padding-bottom: 1em;
 	padding-left: 2em;
 	padding-right: 2em;
+	font-size: 18px;
+	font-weight: 500;
 }
+
 
 .footer-text {
 	padding-top: 7%;
