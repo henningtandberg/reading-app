@@ -20,12 +20,12 @@ class IssuePage extends Component<IIssuePageProps, IIssuePageState> {
         super(props);
 
         this.state = {
-            email: process.env.EMAIL_EMAIL,
-            from: process.env.EMAIL_FROM,
+            email: "",
+            from: "",
             message: "",
-            serviceId: process.env.EMAIL_SERVICE_ID,
-            templateId: process.env.EMIAL_TEMPLATE_ID,
-            userId: process.env.EMAIL_USER_ID,
+            serviceId: "",
+            templateId: "",
+            userId: "",
         };
 
         this.submitForm = this.submitForm.bind(this);
@@ -64,6 +64,18 @@ class IssuePage extends Component<IIssuePageProps, IIssuePageState> {
                 </div>
             </div>
         );
+    }
+
+    public componentDidMount() {
+        fetch("/api/email")
+        .then((response) => response.json())
+        .then((data) => this.setState({
+            email: data.email,
+            from: data.from,
+            serviceId: data.serviceId,
+            templateId: data.templateId,
+            userId: data.userId,
+        }));
     }
 
     private validateForm(): boolean {

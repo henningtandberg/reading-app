@@ -1,9 +1,13 @@
 import BodyParser from "body-parser";
+import dotenv from "dotenv";
 import express, { response } from "express";
 import Mongoose from "mongoose";
 import Bundler from "parcel-bundler";
 import path from "path";
 import shortid from "shortid";
+
+dotenv.config();
+console.log(process.env);
 
 Mongoose.connect("mongodb://localhost/reading-app");
 
@@ -105,12 +109,6 @@ app.get("/api/read/tasks", async (req, res) => {
 });
 
 app.get("/api/overview", async (req, res) => {
-  const body = {
-    pagesPerHour: 0,
-    pagesPerWeek: 0,
-    pagesTotal: 0,
-  };
-
   try {
     const result = await ReadModel.find().exec();
     const totalTime = result.reduce((acc: number, elm: any) => acc + elm.time, 0);
@@ -146,7 +144,28 @@ app.get("/api/overview", async (req, res) => {
   }
 });
 
-// const bundler = new Bundler(path.join(__dirname, "../src/client/index.html"));
+app.get("/api/email", async (req, res) => {
+  try {
+    const result = {
+      email : process.env.EMAIL,
+      from : process.env.FROM,
+      serviceId : process.env.SERVICE_ID,
+      templateId : process.env.TEMPLATE_ID,
+      userId : process.env.USER_ID,
+    };
+
+    console.log({
+      api: "/api/email",
+      method: "GET",
+      result,
+    });
+
+    res.send(result);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 const bundler = new Bundler(path.join(__dirname, "../src/client/public/index.html"));
 app.use(bundler.middleware());
 
