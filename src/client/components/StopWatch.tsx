@@ -78,7 +78,7 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
         await fetch("/api/read/session", {
             body: JSON.stringify({
                 pages: this.state.pages,
-                time: this.state.timerTime / 1000, // Seconds
+                time: (Math.floor(this.state.timerTime / 1000) / 60), // Seconds
             }),
             cache: "no-cache",
             credentials: "same-origin",
@@ -90,11 +90,11 @@ class Stopwatch extends Component<IStopwatchProps, IStopwatchState> {
             redirect: "follow",
             referrerPolicy: "no-referrer",
         })
-        .then(() => {
-            this.forceUpdate();
+    .then(() => {
+        this.forceUpdate();
         })
         .then(() => {
-            alert("Din lesetid og antall sider har blitt registrert!");
+            alert("Din lesetid " +  (Math.floor(this.state.timerTime / 1000) + "og antall sider har blitt registrert!");
         })
         .then(() => {
             window.location.reload();

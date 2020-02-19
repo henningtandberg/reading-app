@@ -115,8 +115,8 @@ app.get("/api/overview", async (req, res) => {
     const totalTimeHours = totalTime / 3600;
     const pagesTotal = result.reduce((acc: number, elm: any) => acc + elm.pages, 0);
     const pagesPerHour = Math.round(pagesTotal / totalTimeHours);
-    const pagesPerDay = Math.round(pagesPerHour / 24);
-    const pagesPerWeek = Math.round(pagesPerDay / 7);
+    const pagesPerDay = Math.round(pagesPerHour * 24);
+    const pagesPerWeek = Math.round(pagesPerDay * 7);
 
     console.log({
       api: "/api/overview",
@@ -138,6 +138,7 @@ app.get("/api/overview", async (req, res) => {
       pagesPerHour,
       pagesPerDay,
       pagesPerWeek,
+      totalTime,
     });
   } catch (error) {
     res.status(500).send(error);
