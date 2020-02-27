@@ -24,6 +24,10 @@ a:visited {
   color: white;
 }
 
+.col-xl-12 {
+	flex: auto;
+}
+
 .home {
 	text-align: center;
 

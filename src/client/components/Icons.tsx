@@ -5,6 +5,7 @@ import PagesDayPNG from "/png/book.png";
 import PagesHourPNG from "/png/hour.png";
 import PagesTotalPNG from "/png/page.png";
 import PagesWeekPNG from "/png/week.png";
+import TotalTimePNG from "/png/clock.png";
 
 interface IconProps {
     text: string;
@@ -36,5 +37,6 @@ export const PagesHour = (props: IconProps) => (IconWithText(PagesHourPNG, props
 export const PagesDay = (props: IconProps) => (IconWithText(PagesDayPNG, props));
 export const PagesWeek = (props: IconProps) => (IconWithText(PagesWeekPNG, props));
 export const PagesTotal = (props: IconProps) => (IconWithText(PagesTotalPNG, props));
+export const TotalTime = (props: IconProps) => (IconWithText(TotalTimePNG, props));
 export const Checked = (props: IconProps) => (IconWithTextRev(CheckedPNG, props));
 export const Unchecked = (props: IconProps) => (IconWithTextRev(UncheckedPNG, props));

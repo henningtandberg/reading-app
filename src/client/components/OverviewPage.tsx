@@ -60,28 +60,36 @@ class OverviewPage extends Component<IOverviewProps, IOverviewState> {
                     <h1>Oversikt</h1>
                 </div>
                 <div className="overview-text-box col-xl-12">
+                    <Icon.PagesTotal
+                        text={"Antall leste sider: " + this.state.pagesTotal}
+                    />
+                </div>
+                <div className="overview-text-box col-xl-12">
+                   <Icon.TotalTime
+                        text={"Total lesetid: " + hours + ":" + minutes + ":" + seconds}
+                    />
+                </div>
+                <div className="overview-title col-md-12">
+                    <br></br>
+                    <br></br>
+                    <h1>Statistikk</h1>
+                </div>
+                <div className="overview-text-box col-xl-12">
                     <Icon.PagesHour
-                        text={"Sider lest per time: " + this.state.pagesPerHour}
+                        text={"Fortsetter du i dette tempoet, kan du klare " +
+                        this.state.pagesPerHour + " sider i timen"}
                     />
                 </div>
                 <div className="overview-text-box col-xl-12">
                     <Icon.PagesDay 
-                        text={"Sider lest per dag: " + this.state.pagesPerDay}
+                        text={"Leser du to timer hver dag, kan du klare " +
+                        (this.state.pagesPerHour * 2) + " sider om dagen"}
                     />
                 </div>
                 <div className="overview-text-box col-xl-12">
                     <Icon.PagesWeek
-                        text={"Sider lest per uke: " + this.state.pagesPerWeek}
-                    />
-                </div>
-                <div className="overview-text-box col-xl-12">
-                    <Icon.PagesTotal
-                        text={"Sider lest totalt: " + this.state.pagesTotal}
-                    />
-                </div>
-                <div className="overview-text-box col-xl-12">
-                   <Icon.PagesTotal
-                        text={"Total lesetid: " + hours + ":" + minutes + ":" + seconds}
+                        text={"Holder du dette tempoet daglig, kan du klare " +
+                        (this.state.pagesPerHour * 2 * 7) + " sider i uka"}
                     />
                 </div>
             </div>

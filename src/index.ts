@@ -7,7 +7,6 @@ import path from "path";
 import shortid from "shortid";
 
 dotenv.config();
-console.log(process.env);
 
 Mongoose.connect("mongodb://localhost/reading-app");
 
@@ -114,9 +113,21 @@ app.get("/api/overview", async (req, res) => {
     const totalTime = result.reduce((acc: number, elm: any) => acc + elm.time, 0);
     const totalTimeHours = totalTime / 3600;
     const pagesTotal = result.reduce((acc: number, elm: any) => acc + elm.pages, 0);
-    const pagesPerHour = Math.round(pagesTotal / totalTimeHours);
-    const pagesPerDay = Math.round(pagesPerHour * 24);
-    const pagesPerWeek = Math.round(pagesPerDay * 7);
+
+    let pagesPerHour = Math.round(pagesTotal / totalTimeHours);
+    if (isNaN(pagesPerHour)) {
+      pagesPerHour = 0;
+    }
+
+    let pagesPerDay = Math.round(pagesPerHour * 24);
+    if (isNaN(pagesPerDay)) {
+      pagesPerDay = 0;
+    }
+
+    let pagesPerWeek = Math.round(pagesPerDay * 7);
+    if (isNaN(pagesPerWeek)) {
+      pagesPerWeek = 0;
+    }
 
     console.log({
       api: "/api/overview",
